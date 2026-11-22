@@ -19,7 +19,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / MIPS-CPU / Single-Cycle](https://github.com/hakula139/MIPS-CPU/tree/master/Single-Cycle)
+[:(fab fa-github):  hakula139 / MIPS-CPU / Single-Cycle](https://github.com/hakulattic/MIPS-CPU/tree/master/Single-Cycle)
 {{< /admonition >}}
 
 ## 1 MIPS 指令集
@@ -105,7 +105,7 @@ nop  : 0000 0000 0000 0000 0000 0000 0000 0000
 
 使用时从 $\textrm{A}$ 读入指令地址（范围：$[\mathtt{0x0},\mathtt{0x3F}]$），从 $\textrm{RD}$ 输出这个地址中的 32 位指令。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/imem.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/imem.sv)。
 
 ### 2.2 `dmem`
 
@@ -115,7 +115,7 @@ nop  : 0000 0000 0000 0000 0000 0000 0000 0000
 
 当写使能 $\textrm{WE}$ 为 $1$ 时，在时钟上升沿将数据 $\textrm{WD}$ 写入地址 $\textrm{A}$；当写使能 $\textrm{WE}$ 为 $0$ 时，将地址 $\textrm{A}$ 中的数据读入到 $\textrm{RD}$。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/dmem.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/dmem.sv)。
 
 ### 2.3 `mips`
 
@@ -123,7 +123,7 @@ nop  : 0000 0000 0000 0000 0000 0000 0000 0000
 
 CPU 核心可分为两个部分：`control_unit` 和 `datapath`，分别表示控制单元和数据通路。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/mips.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/mips.sv)。
 
 ### 2.4 `control_unit`
 
@@ -133,7 +133,7 @@ CPU 核心可分为两个部分：`control_unit` 和 `datapath`，分别表示�
 
 实现中，先通过主译码器 `main_dec` 解码，对其中类型为 R-type 的指令再通过 ALU 译码器 `alu_dec` 解码。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/control_unit.sv)。实现中将控制信号集中赋值，省去了书写大量赋值语句的麻烦。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/control_unit.sv)。实现中将控制信号集中赋值，省去了书写大量赋值语句的麻烦。
 
 ```sv
 logic [13:0] bundle;
@@ -229,7 +229,7 @@ ALU 译码器，完整真值表如下：
 
 这张图不用细看，下面我会拆解开来讲解其中的每个部件。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/datapath.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/datapath.sv)。
 
 ### 2.6 `sign_ext`
 
@@ -239,7 +239,7 @@ ALU 译码器，完整真值表如下：
 
 使用时从 $\textrm{A}$ 读入待扩展的数据，从 $\textrm{RESULT}$ 输出扩展后的数据。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/utils.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/utils.sv)。
 
 ### 2.7 `adder`
 
@@ -249,7 +249,7 @@ ALU 译码器，完整真值表如下：
 
 使用时读入 $\textrm{A}$ 和 $\textrm{B}$，从 $\textrm{RESULT}$ 输出 $\textrm{A}$ 和 $\textrm{B}$ 相加后的值。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/utils.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/utils.sv)。
 
 ### 2.8 `mux2`, `mux4`
 
@@ -282,7 +282,7 @@ ALU 译码器，完整真值表如下：
 - 对于指令 `lw`，`write_reg_data` = `[Address]`，由 `mem_to_reg` 信号控制 `result_mux2` 选择，此时 `mem_to_reg` 为 `1`，`jump[2]` 为 `0`；
 - 对于指令 `jal`，`write_reg_data` = `PC + 4`；由 `jump` 信号控制 `write_reg_data_mux2` 选择，此时 `jump[2]` 为 `1`。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/utils.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/utils.sv)。
 
 ### 2.9 `reg_file`
 
@@ -292,7 +292,7 @@ ALU 译码器，完整真值表如下：
 
 使用时从 $\textrm{RA}_1$ 和 $\textrm{RA}_2$ 分别读入地址（范围：$[\mathtt{0x0},\mathtt{0x1F}]$）以指定寄存器，然后从 $\textrm{RD}_1$ 和 $\textrm{RD}_2$ 分别输出对应寄存器中的 32 位数据。其中 0 号寄存器的值始终为 $0$，因此在实现中直接返回 $0$。当写使能 $\textrm{WE}_3$ 为 $1$ 时，在时钟上升沿将数据 $\textrm{WD}_3$ 写入地址 $\textrm{WA}_3$ 指定的寄存器。当重置信号 $\textrm{RST}$ 为 $1$ 时，清空所有寄存器中的数据。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/reg_file.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/reg_file.sv)。
 
 ### 2.10 `flip_flop`
 
@@ -302,7 +302,7 @@ ALU 译码器，完整真值表如下：
 
 在时钟上升沿将新的 PC 值 $\textrm{D}$ 写入。当重置信号 $\textrm{RST}$ 为 $1$ 时，将 PC 异步清零。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/flip_flop.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/flip_flop.sv)。
 
 ### 2.11 `alu`
 
@@ -329,7 +329,7 @@ ALU 根据 $\textrm{ALU\\_CONTROL}$ 信号决定对操作数 $\textrm{A}$ 和 $\
 
 {{< /style >}}
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/alu.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Single-Cycle/src/alu.sv)。
 
 ## 3 样例测试
 

@@ -17,13 +17,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / xv6-armv8 at lab5](https://github.com/hakula139/xv6-armv8/tree/lab5)
+[:(fab fa-github):  hakula139 / xv6-armv8 at lab5](https://github.com/hakulattic/xv6-armv8/tree/lab5)
 {{< /admonition >}}
 
 ## 实验简介
 
 {{< admonition info 参见 >}}
-[hakula139 / xv6-armv8 / docs / lab5.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab5/docs/lab5.md)
+[hakula139 / xv6-armv8 / docs / lab5.md - GitHub](https://github.com/hakulattic/xv6-armv8/blob/lab5/docs/lab5.md)
 {{< /admonition >}}
 
 ## 实验报告

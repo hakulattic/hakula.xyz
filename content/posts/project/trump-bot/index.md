@@ -22,7 +22,7 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / Trump-bot](https://github.com/hakula139/Trump-bot)
+[:(fab fa-github):  hakula139 / Trump-bot](https://github.com/hakulattic/Trump-bot)
 {{< /admonition >}}
 
 ## 1 选题动机
@@ -721,8 +721,8 @@ I have n't think the Federal Party are doing such being important in their stone
 [GRU]: https://pytorch.org/docs/stable/generated/torch.nn.GRU.html
 [Linear]: https://pytorch.org/docs/stable/generated/torch.nn.Linear.html
 [Adam]: https://pytorch.org/docs/stable/optim.html#torch.optim.Adam
-[corpus.py]: https://github.com/hakula139/Trump-bot/blob/main/trump_bot/corpus.py
-[model.py]: https://github.com/hakula139/Trump-bot/blob/main/trump_bot/model.py
-[main.py]: https://github.com/hakula139/Trump-bot/blob/main/trump_bot/main.py
+[corpus.py]: https://github.com/hakulattic/Trump-bot/blob/main/trump_bot/corpus.py
+[model.py]: https://github.com/hakulattic/Trump-bot/blob/main/trump_bot/model.py
+[main.py]: https://github.com/hakulattic/Trump-bot/blob/main/trump_bot/main.py
 [anaconda]: https://www.anaconda.com/products/individual
 [cuda]: https://developer.nvidia.com/cuda-10.1-download-archive-base

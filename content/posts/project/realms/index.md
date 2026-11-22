@@ -19,7 +19,7 @@ Introduction to Database Systems (H) @ Fudan University, spring 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / REALMS](https://github.com/hakula139/REALMS)
+[:(fab fa-github):  hakula139 / REALMS](https://github.com/hakulattic/REALMS)
 {{< /admonition >}}
 
 ## Getting started
@@ -45,7 +45,7 @@ For Windows, try [MinGW-w64][mingw].
 First, you need to obtain the REALMS package.
 
 ```bash
-git clone https://github.com/hakula139/REALMS.git
+git clone https://github.com/hakulattic/REALMS.git
 cd REALMS
 ```
 

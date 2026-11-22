@@ -17,13 +17,13 @@ Algorithms (H) @ Fudan University, spring 2021.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / dna-error-detection at task-2-segments](https://github.com/hakula139/dna-error-detection/tree/task-2-segments)
+[:(fab fa-github):  hakula139 / dna-error-detection at task-2-segments](https://github.com/hakulattic/dna-error-detection/tree/task-2-segments)
 {{< /admonition >}}
 
 ## 题目简介
 
 {{< admonition info 参见 >}}
-[hakula139 / dna-error-detection / docs / README.pdf - GitHub](https://github.com/hakula139/dna-error-detection/blob/master/docs/README.pdf)
+[hakula139 / dna-error-detection / docs / README.pdf - GitHub](https://github.com/hakulattic/dna-error-detection/blob/master/docs/README.pdf)
 {{< /admonition >}}
 
 ## 解题报告
@@ -127,13 +127,13 @@ Algorithms (H) @ Fudan University, spring 2021.
 1. [Heng Li. Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics, 34, 18, 2018: 3094-3100.][minimap2]
 
 [minimap2]: https://doi.org/10.1093/bioinformatics/bty191
-[config.cpp]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/src/utils/config.cpp
-[dna.cpp:187]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/src/common/dna.cpp#L187
-[dna.cpp:250]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/src/common/dna.cpp#L250
-[dna.cpp:368]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/src/common/dna.cpp#L368
-[dna_overlap.cpp:44]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/src/common/dna_overlap.cpp#L44
-[dna_overlap.cpp:116]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/src/common/dna_overlap.cpp#L116
-[dna_delta.cpp:125]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/src/common/dna_delta.cpp#L125
-[makefile:20]: https://github.com/hakula139/dna-error-detection/blob/task-2-segments/Makefile#L20
+[config.cpp]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/src/utils/config.cpp
+[dna.cpp:187]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/src/common/dna.cpp#L187
+[dna.cpp:250]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/src/common/dna.cpp#L250
+[dna.cpp:368]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/src/common/dna.cpp#L368
+[dna_overlap.cpp:44]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/src/common/dna_overlap.cpp#L44
+[dna_overlap.cpp:116]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/src/common/dna_overlap.cpp#L116
+[dna_delta.cpp:125]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/src/common/dna_delta.cpp#L125
+[makefile:20]: https://github.com/hakulattic/dna-error-detection/blob/task-2-segments/Makefile#L20
 
 [^cc]: 默认使用 g++ 作为编译器，如需改动，可以在 [Makefile][makefile:20] 文件中进行修改。

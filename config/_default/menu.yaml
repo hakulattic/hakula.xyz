@@ -49,5 +49,5 @@ external:
   - identifier: github
     title: 网站源码
     pre: <i class="fab fa-github fa-fw"></i>
-    url: https://github.com/hakula139/hakula.xyz
+    url: https://github.com/hakulattic/hakula.xyz
     weight: 10

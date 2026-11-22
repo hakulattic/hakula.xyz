@@ -19,7 +19,7 @@ Computer Networks @ Fudan University, fall 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / Naive-FTP](https://github.com/hakula139/Naive-FTP)
+[:(fab fa-github):  hakula139 / Naive-FTP](https://github.com/hakulattic/Naive-FTP)
 {{< /admonition >}}
 
 {{< image src="assets/gui.webp" caption="Naive-FTP" >}}
@@ -53,7 +53,7 @@ To set up the environment, you need to have the following dependencies installed
 First, obtain the Naive-FTP package.
 
 ```bash
-git clone https://github.com/hakula139/Naive-FTP.git
+git clone https://github.com/hakulattic/Naive-FTP.git
 cd Naive-FTP
 ```
 

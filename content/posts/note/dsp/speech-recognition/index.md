@@ -19,7 +19,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / naive-speech-recognizer](https://github.com/hakula139/naive-speech-recognizer)
+[:(fab fa-github):  hakula139 / naive-speech-recognizer](https://github.com/hakulattic/naive-speech-recognizer)
 {{< /admonition >}}
 
 ## 1 项目说明
@@ -213,4 +213,4 @@ CNN 主要解决的问题是「将复杂问题简化」。具体来说，也就�
 
 [pooling-img-src]: https://analyticsindiamag.com/comprehensive-guide-to-different-pooling-layers-in-deep-learning/
 [cnn-img-src]: https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53
-[classifier.py]: https://github.com/hakula139/naive-speech-recognizer/blob/master/classifier.py
+[classifier.py]: https://github.com/hakulattic/naive-speech-recognizer/blob/master/classifier.py

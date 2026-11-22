@@ -19,7 +19,7 @@ Computer Graphics @ Fudan University, fall 2021.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / music-visualization](https://github.com/hakula139/music-visualization)
+[:(fab fa-github):  hakula139 / music-visualization](https://github.com/hakulattic/music-visualization)
 {{< /admonition >}}
 
 {{< image src="assets/screenshot.webp" caption="音乐可视化" >}}
@@ -194,8 +194,8 @@ const setFillStyle = (): void => {
 
 [demo]: https://music-visualization-hakula.vercel.app
 [nodejs]: https://nodejs.org/en/download
-[server.mjs]: https://github.com/hakula139/music-visualization/blob/master/server.mjs
-[MusicVisualizer.vue]: https://github.com/hakula139/music-visualization/blob/master/src/components/MusicVisualizer.vue
+[server.mjs]: https://github.com/hakulattic/music-visualization/blob/master/server.mjs
+[MusicVisualizer.vue]: https://github.com/hakulattic/music-visualization/blob/master/src/components/MusicVisualizer.vue
 
 [^cors]: 可能存在跨域问题（CORS），请提供允许跨域的地址。
 [^about-freq]: 取 $f_s=44100$，则有 $44100/2/128 = 172.27$。
