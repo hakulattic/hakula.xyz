@@ -19,7 +19,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / MIPS-CPU / Branch-Predictor](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor)
+[:(fab fa-github):  hakula139 / MIPS-CPU / Branch-Predictor](https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor)
 {{< /admonition >}}
 
 ## 1 参数
@@ -45,8 +45,8 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
   - `TAKEN`：总是跳转，对应 $\mathrm{mode}=1$
   - `BTFNT`：向后分支（往较低地址）跳转，向前分支（往较高地址）不跳转，对应 $\mathrm{mode}=2$
 
-[bpb.svh]: https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bpb.svh
-[sp.svh]: https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/static_predictor.svh
+[bpb.svh]: https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bpb.svh
+[sp.svh]: https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/static_predictor.svh
 
 ## 2 结构
 
@@ -58,7 +58,7 @@ GHT（Global History Table）是一个全局分支跳转记录表，所有分支
 
 Global Predictor 的优势在于能够发现不同跳转指令间的相关性，并根据这种相关性作预测；缺点在于如果跳转指令实际上不相关，则容易被这些不相关的跳转情况所稀释（dilute）。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/ght.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/ght.sv)。
 
 ### 2.2 Branch History Table
 
@@ -68,7 +68,7 @@ BHT（Branch History Table）是一个局部分支跳转记录表，每个条件
 
 Local Predictor 的优势在于能够发现同一跳转指令在一个时间段内的相关性，并根据这种相关性作预测；缺点在于无法发现不同跳转指令间的相关性。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bht.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bht.sv)。
 
 ### 2.3 Pattern History Table
 
@@ -78,7 +78,7 @@ Selector 根据上次预测的情况决定本次选用 Global Predictor 还是 L
 
 Tournament Predictor 的优势在于能够根据不同分支的不同情况，选择最适合其特征的预测模式。因此在大多数情况下，Tournament Predictor 会有相对较好的表现。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/pht.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/pht.sv)。
 
 ### 2.4 Saturating Counter
 
@@ -93,13 +93,13 @@ Tournament Predictor 的优势在于能够根据不同分支的不同情况，�
 
 也就是说，通常需要连续 2 次实际跳转 / 不跳转，一种状态才会翻转到另一种状态，从而改变预测结果。这种机制提高了预测器的稳定性，不会因为一点小波动就立刻改变预测结果。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/state_switch.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/state_switch.sv)。
 
 ### 2.5 Static Predictor
 
 在程序刚开始运行时，GHT, BHT, PHT 都还是空的，此时需要 fallback 到 Static Predictor。Static Predictor 默认采用 BTFNT 策略，相较于其他静态预测模式，能够较好地同时处理循环[^btfnt]和一般跳转情况。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/static_predictor.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/static_predictor.sv)。
 
 [^btfnt]: 这里利用的是循环在绝大多数时候（除了最后一次）总是向后跳转的特性。
 
@@ -111,9 +111,9 @@ BPB（Branch Prediction Buffer）是这个动态分支预测器的主体，负�
 
 通过 Fetch 阶段得到的信息，利用 Tournament Predictor 进行预测，并将预测跳转的目的地址返还给 CPU。随后在 Decode 阶段检查预测结果是否正确，如果不正确，则将 `miss` 信号置 `1`，并传给 CPU 和各 PHT。CPU 接收到 `miss` 信号后，Fetch 阶段重新计算正确的地址（此时正确的 PC 地址在 Decode 阶段，需要回传给 Fetch 阶段），Hazard Unit 发出控制信号 flush 流水线寄存器 `decode_reg` 和 `execute_reg`。各 PHT 接收到 `miss` 信号后，根据实际的 taken 情况进行更新。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bpb.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bpb.sv)。
 
-[parser.sv]: https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/parser.sv
+[parser.sv]: https://github.com/hakulattic/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/parser.sv
 
 ## 3 一些改动
 

@@ -19,7 +19,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / MIPS-CPU / Pipeline](https://github.com/hakula139/MIPS-CPU/tree/master/Pipeline)
+[:(fab fa-github):  hakula139 / MIPS-CPU / Pipeline](https://github.com/hakulattic/MIPS-CPU/tree/master/Pipeline)
 {{< /admonition >}}
 
 ## 1 MIPS 指令集
@@ -60,7 +60,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 了解了以上连接规则后，展示 `mips` 的完整总览图就不那么必要了。比起大而繁乱的连线总览图，直接看代码甚至都更为直观。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/mips.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/mips.sv)。
 
 ### 2.2 `fetch`
 
@@ -72,7 +72,7 @@ Fetch 阶段，通过 `pc_f` 输出指令地址 `pc` 到 `imem`，通过 `instr_
 
 在需要解决冲突的情况下，通过 `stall_f`, `stall_d`, `flush_d` 信号决定是否保持（stall）或清空（flush）对应流水线寄存器保存的数据，其中 `stall_f` 为 `1` 时保持当前 PC 值不更新，`stall_d` 为 `1` 时保持当前 `decode_reg` 的数据不更新，`flush_d` 为 `1` 时清空 `decode_reg` 的数据。具体这些信号在何时为何值，将在 [2.7](#27-hazard_unit) 节详细阐述。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/fetch.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/fetch.sv)。
 
 #### 2.2.1 `fetch_reg`
 
@@ -80,7 +80,7 @@ Fetch 阶段，通过 `pc_f` 输出指令地址 `pc` 到 `imem`，通过 `instr_
 
 Fetch 阶段流水线寄存器。结构很简单，就是将 PC 寄存器 `pc_reg` 封装了一下。但相较于单周期版本的 `flip_flop`，流水线版本做了一些调整。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/fetch_reg.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/fetch_reg.sv)。
 
 ##### 2.2.1.1 `flip_flop`
 
@@ -90,7 +90,7 @@ Fetch 阶段流水线寄存器。结构很简单，就是将 PC 寄存器 `pc_re
 
 首先增加了一个清零信号 $\textrm{CLR}$，当 $\textrm{CLR}$ 为 $1$ 时，将保存的数据同步清零（$\textrm{RST}$ 为异步清零），用于 flush 信号。尽管这里 `fetch_reg` 用不到，但其他流水线寄存器可能会需要，这里是出于部件复用的考虑。其次增加了一个**低电平**有效的保持信号 $\textrm{EN}$，当 $\textrm{EN}$ 为 $0$ 时，保持数据不变。对于 `fetch_reg` 来说，其值即 `~stall_f`。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/flip_flop.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/flip_flop.sv)。
 
 #### 2.2.2 `decode_reg`
 
@@ -100,7 +100,7 @@ Fetch 阶段和 Decode 阶段之间的流水线寄存器，中转一下 `instr` 
 
 这里 `instr_reg` 的 $\textrm{CLR}$ 信号为 `~stall_d & flush_d`，是为了使 `stall_d` 和 `flush_d` 信号互斥，且强制 `stall_d` 的优先级更高（当 `stall_d` 为 `1` 时，`flush_d` 无效，不允许清零），否则当两者同时为 `1` 时会导致错误（因为在触发器的实现中，`flush` 的优先级更高，这将导致指令丢失）。`pc_plus_4_reg` 不需要清零，因此 $\textrm{CLR}$ 信号恒为 $0$。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/decode_reg.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/decode_reg.sv)。
 
 ### 2.3 `decode`
 
@@ -114,7 +114,7 @@ Decode 阶段，读入指令 `instr_d`，由控制单元 `control_unit` 解析�
 
 在需要解决冲突的情况下，通过 `stall_e`, `flush_e` 信号决定是否保持或清空 `execute_reg` 保存的数据。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/decode.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/decode.sv)。
 
 #### 2.3.1 `control_unit`
 
@@ -141,7 +141,7 @@ Decode 阶段，读入指令 `instr_d`，由控制单元 `control_unit` 解析�
 
 {{< /style >}}
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/control_unit.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/control_unit.sv)。
 
 #### 2.3.2 `equal_cmp`
 
@@ -151,7 +151,7 @@ Decode 阶段，读入指令 `instr_d`，由控制单元 `control_unit` 解析�
 
 使用时读入 $\textrm{A}$ 和 $\textrm{B}$，若 $\textrm{A}$ 和 $\textrm{B}$ 相等则从 $\textrm{EQUAL}$ 输出 $1$。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/utils.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/utils.sv)。
 
 #### 2.3.3 `extend`
 
@@ -161,7 +161,7 @@ Decode 阶段，读入指令 `instr_d`，由控制单元 `control_unit` 解析�
 
 使用时从 $\textrm{A}$ 读入待扩展的数据，从 $\textrm{RESULT}$ 输出扩展后的数据。当 $\textrm{SIGN}$ 为 $1$ 时使用符号扩展，为 $0$ 时使用无符号扩展。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/utils.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/utils.sv)。
 
 #### 2.3.4 `reg_file`
 
@@ -169,7 +169,7 @@ Decode 阶段，读入指令 `instr_d`，由控制单元 `control_unit` 解析�
 
 流水线版本中，寄存器文件调整为在时钟**下降沿**将数据写入，其余同单周期版本。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/reg_file.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/reg_file.sv)。
 
 #### 2.3.5 `execute_reg`
 
@@ -185,7 +185,7 @@ Decode 阶段和 Execute 阶段之间的流水线寄存器，中转一下 `contr
 
 结构及原理同 `decode_reg`，不再赘述。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/execute_reg.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/execute_reg.sv)。
 
 [^bundle]: 关于信号集合，参见单周期的 [2.4](../single-cycle-mips-cpu/#24-control_unit) 节。
 
@@ -195,7 +195,7 @@ Decode 阶段和 Execute 阶段之间的流水线寄存器，中转一下 `contr
 
 Execute 阶段，对操作数 `src_a`, `src_b` 使用 ALU 执行计算。在单周期版本的基础上，新增了两个 `mux4` 用于转发逻辑。这里需要用到 Memory 阶段的数据 `alu_out_m` 和 Writeback 阶段的数据 `result_w` 以应对数据冒险，`read_reg_data`, `write_data`（分别为通常情况下的 `src_a`, `src_b`）取值的选择由 `forward_a_e`, `forward_b_e` 信号控制。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/execute.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/execute.sv)。
 
 #### 2.4.1 `memory_reg`
 
@@ -208,7 +208,7 @@ Execute 阶段和 Memory 阶段之间的流水线寄存器，中转一下 `contr
 - `write_data` 是需要写入 `dmem` 的数据。
 - `write_reg` 是之后写入 `reg_file` 的目标寄存器。对于指令 `jal`，则为 `$ra` 寄存器。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/memory_reg.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/memory_reg.sv)。
 
 ### 2.5 `memory`
 
@@ -216,7 +216,7 @@ Execute 阶段和 Memory 阶段之间的流水线寄存器，中转一下 `contr
 
 Memory 阶段，当 `mem_write` 为 `1` 时，在 `dmem` 的目标地址 `alu_out` 存储需要写入的数据 `write_data`。不过实际上这件事情并不是在 `memory` 模块内完成的，因为 `dmem` 在 `mips` 外面。因此实现中是在 `execute` 模块通过 `mem_write_m`, `alu_out_m`, `write_data_m` 将 `mem_write`, `alu_out`, `write_data` 直接输出到 `dmem`，在下一个时钟上升沿到达时（即 Memory 阶段）写入 `dmem`。`memory` 模块内则是通过 `read_data_m` 从 `dmem` 读入数据 `read_data`。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/memory.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/memory.sv)。
 
 #### 2.5.1 `writeback_reg`
 
@@ -227,7 +227,7 @@ Memory 阶段和 Writeback 阶段之间的流水线寄存器，中转一下 `con
 - `control` 是控制信号 `reg_write`, `mem_to_reg` 的集合。
 - `read_data` 是可能需要写入 `reg_file` 的数据。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/writeback_reg.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/writeback_reg.sv)。
 
 ### 2.6 `writeback`
 
@@ -235,7 +235,7 @@ Memory 阶段和 Writeback 阶段之间的流水线寄存器，中转一下 `con
 
 Writeback 阶段，由 `mem_to_reg` 信号控制 `result_mux2` 选择写入 `reg_file` 的数据为 `alu_out` 还是 `read_data`。写入逻辑放在了 `decode` 模块，参见 [2.3](#23-decode) 节。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/writeback.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/writeback.sv)。
 
 ### 2.7 `hazard_unit`
 
@@ -243,7 +243,7 @@ Writeback 阶段，由 `mem_to_reg` 信号控制 `result_mux2` 选择写入 `reg
 
 冲突单元根据传入的各阶段寄存器和控制信号，检查是否存在数据冲突或控制冲突，并输出相应的控制信号（forward, stall, flush）以处理冲突。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/hazard_unit.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Pipeline/src/hazard_unit.sv)。
 
 #### 2.7.1 数据冲突
 

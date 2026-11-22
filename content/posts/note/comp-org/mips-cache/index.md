@@ -19,7 +19,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / MIPS-CPU / Cache](https://github.com/hakula139/MIPS-CPU/tree/master/Cache)
+[:(fab fa-github):  hakula139 / MIPS-CPU / Cache](https://github.com/hakulattic/MIPS-CPU/tree/master/Cache)
 {{< /admonition >}}
 
 ## 1 参数
@@ -52,13 +52,13 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 Cache 负责输入 CPU 传来的地址、信号及数据，交由 Cache Controller 解析得到相应的控制信号，以控制读写 set / 内存的数据，最终将 set 的输出返还给 CPU。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/cache.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Cache/src/cache/cache.sv)。
 
 ### 2.2 Cache Controller
 
 Cache Controller 通过一个有限状态机（Finite State Machine, FSM）来决定当前所处的状态，随后利用组合逻辑得到 set / 内存的控制信号及读写内存的地址（如果需要）。根据 CPU 输入的地址可以唯一确定需要操作的 set，其余 set 将被屏蔽。具体判断读写及返回哪一个 line 的任务交给每个 set 自行完成。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/cache_controller.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Cache/src/cache/cache_controller.sv)。
 
 #### 2.2.1 FSM
 
@@ -109,7 +109,7 @@ Cache Controller 通过一个有限状态机（Finite State Machine, FSM）来�
 
 得到控制信号的 set 需要判断读写及返回哪一个 line 的数据。本实现中，每个 line 自行检查 tag 是否匹配，并返回是否命中，命中的 line 将同时返回对应 block 的数据。如果存在命中的 line，set 就返回这个 line 的数据，否则由 Replace Controller 决定接下来应该写入（覆盖）哪一个 line。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/set.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Cache/src/cache/set.sv)。
 
 ### 2.4 Replace Controller
 
@@ -123,7 +123,7 @@ Replace Controller 根据当前每个 line 的 valid 和 hit 情况决定接下�
 
 这里我们将替换策略单独放在了一个模块中，因此想补充其他策略也很容易。
 
-代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/replace_controller.sv)。
+代码见 [这里](https://github.com/hakulattic/MIPS-CPU/blob/master/Cache/src/cache/replace_controller.sv)。
 
 ## 3 一些改动
 
@@ -232,6 +232,6 @@ assign dcen = memwrite | mem_to_reg_m;
 2. Randal E. Bryant, David R. O'Hallaron: *Computer Systems: A Programmer's Perspective Third Edition*
 3. [Cache replacement policies - Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies)
 
-[cache.svh]: https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/cache.svh
-[rc.svh]: https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/replace_controller.svh
-[cc.sv]: https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/cache_controller.sv
+[cache.svh]: https://github.com/hakulattic/MIPS-CPU/blob/master/Cache/src/cache/cache.svh
+[rc.svh]: https://github.com/hakulattic/MIPS-CPU/blob/master/Cache/src/cache/replace_controller.svh
+[cc.sv]: https://github.com/hakulattic/MIPS-CPU/blob/master/Cache/src/cache/cache_controller.sv

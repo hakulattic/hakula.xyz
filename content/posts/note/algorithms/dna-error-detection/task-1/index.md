@@ -17,13 +17,13 @@ Algorithms (H) @ Fudan University, spring 2021.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / dna-error-detection at task-1-sv-chain](https://github.com/hakula139/dna-error-detection/tree/task-1-sv-chain)
+[:(fab fa-github):  hakula139 / dna-error-detection at task-1-sv-chain](https://github.com/hakulattic/dna-error-detection/tree/task-1-sv-chain)
 {{< /admonition >}}
 
 ## 题目简介
 
 {{< admonition info 参见 >}}
-[hakula139 / dna-error-detection / docs / README.pdf - GitHub](https://github.com/hakula139/dna-error-detection/blob/master/docs/README.pdf)
+[hakula139 / dna-error-detection / docs / README.pdf - GitHub](https://github.com/hakulattic/dna-error-detection/blob/master/docs/README.pdf)
 {{< /admonition >}}
 
 ## 解题报告
@@ -104,15 +104,15 @@ make && make run
 
 1. [Investigating Myers' diff algorithm: Part 1 of 2 - CodeProject][myers]
 
-[utils.cpp:27]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/utils/utils.cpp#L27
-[config.cpp:6]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/utils/config.cpp#L6
-[dna.cpp:89]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L89
-[dna.cpp:148]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L148
-[dna.cpp:240]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L240
-[dna.cpp:257]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L257
-[dna.cpp:299]:https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L299
-[dna_delta.cpp:61]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/src/common/dna_delta.cpp#L61
-[makefile:14]: https://github.com/hakula139/dna-error-detection/blob/task-1-sv-chain/Makefile#L14
+[utils.cpp:27]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/utils/utils.cpp#L27
+[config.cpp:6]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/utils/config.cpp#L6
+[dna.cpp:89]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L89
+[dna.cpp:148]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L148
+[dna.cpp:240]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L240
+[dna.cpp:257]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L257
+[dna.cpp:299]:https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/common/dna.cpp#L299
+[dna_delta.cpp:61]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/src/common/dna_delta.cpp#L61
+[makefile:14]: https://github.com/hakulattic/dna-error-detection/blob/task-1-sv-chain/Makefile#L14
 [myers]: https://www.codeproject.com/Articles/42279/Investigating-Myers-diff-algorithm-Part-1-of-2
 
 [^lcs]: 最长公共子序列（LCS）并不唯一，我们只保存找到的第一条。实现中，需要在每次发生编辑操作（节点移动到了其他 k-line 上）时保存当前 LCS 的快照，用于在最后进行回溯，这也是空间复杂度 $O(d(m+n))$ 的来源。

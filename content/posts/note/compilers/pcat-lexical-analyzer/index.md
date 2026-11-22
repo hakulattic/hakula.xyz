@@ -19,7 +19,7 @@ Compilers @ Fudan University, fall 2021.
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / pcat_lexical_analyzer](https://github.com/hakula139/pcat_lexical_analyzer)
+[:(fab fa-github):  hakula139 / pcat_lexical_analyzer](https://github.com/hakulattic/pcat_lexical_analyzer)
 {{< /admonition >}}
 
 ## 1 Flex 使用方法

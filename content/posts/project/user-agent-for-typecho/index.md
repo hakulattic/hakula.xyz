@@ -17,7 +17,7 @@ license: CC BY-NC-SA 4.0
 {{< /admonition >}}
 
 {{< admonition success 源码地址 >}}
-[:(fab fa-github):  hakula139 / UserAgent-for-Typecho](https://github.com/hakula139/UserAgent-for-Typecho)
+[:(fab fa-github):  hakula139 / UserAgent-for-Typecho](https://github.com/hakulattic/UserAgent-for-Typecho)
 {{< /admonition >}}
 
 ## 使用说明
